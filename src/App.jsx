@@ -16,7 +16,7 @@ const App = () => {
      <DelegateVote />
       <Flex wrap={'wrap'} gap={'9'}>
         <Proposal 
-          name={"Timothy"}
+          name={"John"}
           id={0}
           handleVote={() => {}}
           voteCount={30}
