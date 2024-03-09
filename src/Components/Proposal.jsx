@@ -1,7 +1,6 @@
-import React from 'react'
 import {Card, Text, Box, Avatar, Flex} from '@radix-ui/themes'
 
-export const Proposal = ({id, name, voteCount, handleVote}) => {
+const Proposal = ({id, name, voteCount, handleVote}) => {
   return (
     <div>
         <Card size="2" style={{ width: 425 }}>
@@ -26,5 +25,7 @@ export const Proposal = ({id, name, voteCount, handleVote}) => {
             </Flex>
         </Card>
     </div>
-  )
+  );
 }
+
+export default Proposal;

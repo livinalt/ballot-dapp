@@ -1,20 +1,19 @@
-import React from 'react'
-import {configureWeb3Modal} from './Connections/index.js';
-import '@radix-ui/themes/styles.css';
-import Header from './Components/Header.jsx';
-import { Proposal } from './Components/Proposal.jsx';
-import { Flex } from '@radix-ui/themes';
+import { Box, Container, Flex, Text } from "@radix-ui/themes";
+import { configureWeb3Modal } from "./Connections";
+import "@radix-ui/themes/styles.css";
+import Header from "./Components/Header";
+import Proposal from "./Components/Proposal";
+import DelegateVote from "./Components/DelegateVote";
 import useProposals from "./hooks/useProposals";
-import {useWeb3ModalAccount, useWeb3ModalProvider} from "@web3modal/ethers/react";
+import { useWeb3ModalAccount,useWeb3ModalProvider} from "@web3modal/ethers/react";
 import { isSupportedChain } from "./Utils";
 import { getProvider } from "./Constants/providers";
 import { getProposalsContract } from "./Constants/contracts";
 
-
 configureWeb3Modal();
 
-function App () {
-  const { loading, data: proposals } = useProposals();
+function App() {
+    const { loading, data: proposals } = useProposals();
     const { chainId } = useWeb3ModalAccount();
     const { walletProvider } = useWeb3ModalProvider();
 
@@ -51,10 +50,16 @@ function App () {
             console.error("error: ", errorText);
         }
     };
-  return (
-    <div>
-      <Header />
-      <Flex wrap={"wrap"} gap={"6"}>
+
+    return (
+        <Container>
+            <Header />
+            <main className="mt-6">
+                <Box mb="4">
+                    <DelegateVote />
+                </Box>
+
+                <Flex wrap={"wrap"} gap={"6"}>
                     {loading ? (
                         <Text>Loading...</Text>
                     ) : proposals.length !== 0 ? (
@@ -71,8 +76,9 @@ function App () {
                         <Text>Could not get proposals!!</Text>
                     )}
                 </Flex>
-           </div> 
-  );
+            </main>
+        </Container>
+    );
 }
 
-export default App
+export default App;
