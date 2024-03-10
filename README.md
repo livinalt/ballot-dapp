@@ -1,5 +1,11 @@
 # React + Vite
 
+## Live Link
+
+*You can find the live link to the project here*
+https://ballot-dapp-livt.vercel.app/
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
