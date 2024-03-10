@@ -4,6 +4,7 @@ import { getProposalsContract } from "../Constants/contracts";
 import { getProvider } from "../Constants/providers";
 import Proposal from "./Proposal";
 import { Flex, Text } from "@radix-ui/themes";
+import { Toast } from "@radix-ui/react-toast";
 
 
 const HandleVoter = ({proposals, loading}) => {
@@ -26,12 +27,12 @@ const HandleVoter = ({proposals, loading}) => {
             console.log("receipt: ", receipt);
 
             if (receipt.status) {
-                return console.log("vote successfull!");
+                return Toast.success("vote successfull!");
             }
 
-            console.log("vote failed!");
+            Toast.error("vote failed!");
         } catch (error) {
-            console.log(error);
+            Toast.error(error);
             let errorText;
             if (error.reason === "Has no right to vote") {
                 errorText = "You have not right to vote";
@@ -41,7 +42,7 @@ const HandleVoter = ({proposals, loading}) => {
                 errorText = "An unknown error occured";
             }
 
-            console.error("error: ", errorText);
+            Toast.error("error: ", errorText);
         }
 
     };
